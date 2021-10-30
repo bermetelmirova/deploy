@@ -1,8 +1,11 @@
 package kg.itacademy.springWebApp.controller;
 
 import kg.itacademy.springWebApp.entity.User;
+import kg.itacademy.springWebApp.model.UserModel;
 import kg.itacademy.springWebApp.service.UserService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +31,11 @@ public class UserController {
         return userService.save(user);
     }
 
+    @PostMapping("/sign-in")
+    public ResponseEntity<String> signIn(@RequestBody UserModel userModel) {
+        return ResponseEntity.ok(userService.getAutorizationToken(userModel));
+    }
+
     @PutMapping
     public User updateUser(@RequestBody User user) {
         return userService.updateUser(user);
@@ -43,7 +51,7 @@ public class UserController {
     }
 
     @GetMapping("/get-current")
-    public User getCurrentUser(){
-        return  userService.getCurrentUser();
+    public User getCurrentUser() {
+        return userService.getCurrentUser();
     }
 }

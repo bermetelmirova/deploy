@@ -1,6 +1,7 @@
 package kg.itacademy.springWebApp.service;
 
 import kg.itacademy.springWebApp.entity.User;
+import kg.itacademy.springWebApp.model.UserModel;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface UserService {
     User getByLogin(String login);
 
     User getCurrentUser();
+
+    String getAutorizationToken(UserModel userModel);
 }
